@@ -20,10 +20,11 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private UserRepository userRepository;
 
-  private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+  private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
   @Override
   public List<User> findAll() {
+    logger.info("Find All users");
     return userRepository.findAll();
   }
 
