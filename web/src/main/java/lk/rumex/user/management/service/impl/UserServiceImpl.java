@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService {
   @Override
   public User findById(Long id) {
     boolean present = userRepository.findById(id).isPresent();
-
     if (present) {
       return userRepository.findById(id).get();
     } else {
