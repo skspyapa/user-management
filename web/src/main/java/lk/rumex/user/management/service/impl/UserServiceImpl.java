@@ -29,13 +29,9 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User create(CreateUserDTO createUserDTO) {
-
     User user = new User();
-
     user.setAge(createUserDTO.getAge());
-
     user.setAddress(createUserDTO.getAddress());
-
     return userRepository.save(user);
 }
 
