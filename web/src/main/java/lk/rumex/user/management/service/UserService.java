@@ -1,6 +1,7 @@
 package lk.rumex.user.management.service;
 
 import lk.rumex.user.management.dto.CreateUserDTO;
+import lk.rumex.user.management.exception.UserNotFoundException;
 import lk.rumex.user.management.model.User;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface UserService {
 
   Long delete(Long id);
 
-  User findById(Long id);
+  User findById(Long id) throws UserNotFoundException;
 }

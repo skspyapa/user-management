@@ -2,6 +2,7 @@ package lk.rumex.user.management.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lk.rumex.user.management.dto.CreateUserDTO;
+import lk.rumex.user.management.exception.UserNotFoundException;
 import lk.rumex.user.management.model.User;
 import lk.rumex.user.management.service.UserService;
 import lk.rumex.user.management.transform.UserResponseTransformer;
@@ -24,6 +25,9 @@ public class UserController {
 
   private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+  /**
+   *find all users controller
+   */
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(value = "/users", method = RequestMethod.GET)
   public List<User> getAllUsers() throws JsonProcessingException {
@@ -33,20 +37,29 @@ public class UserController {
     return userResponseTransformer.findAllUsersTransformer(allUsers);
   }
 
+  /**
+   *crete user controller
+   */
   @RequestMapping(value = "/users", method = RequestMethod.POST)
   public User createUser(@RequestBody CreateUserDTO createUserDTO) {
     User user = userService.create(createUserDTO);
     return user;
   }
 
+  /**
+   *delete user controller
+   */
   @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
   public Long deleteUser(@PathVariable(name = "id") Long id) {
     Long delete = userService.delete(id);
     return delete;
   }
 
+  /**
+   *find user by id controller
+   */
   @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-  public User findById(@PathVariable(name = "id") Long id) {
+  public User findById(@PathVariable(name = "id") Long id) throws UserNotFoundException {
     User byId = userService.findById(id);
     return byId;
   }
